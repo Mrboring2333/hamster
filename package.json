@@ -1,0 +1,65 @@
+{
+  "name": "hamster-desktop-pet",
+  "version": "1.0.3",
+  "private": true,
+  "description": "小仓鼠 · 透明桌面宠物",
+  "author": "Hamster Desktop",
+  "license": "UNLICENSED",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.browser.json && node scripts/build.mjs",
+    "start": "npm run build && electron .",
+    "test": "npm run build && node --test tests/*.test.cjs",
+    "pack:mac": "npm run build && electron-builder --mac --arm64 --x64",
+    "pack:win": "npm run build && electron-builder --win --x64",
+    "pack:local": "npm run build && electron-builder --dir",
+    "prestart": "node node_modules/electron/install.js",
+    "cut:ball": "python3 scripts/split-ball.py"
+  },
+  "devDependencies": {
+    "electron": "44.4.1",
+    "electron-builder": "26.15.3",
+    "typescript": "^5.9.3",
+    "@types/node": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.hamster.desktop",
+    "productName": "小仓鼠",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/electron/**/*",
+      "dist/browser/**/*",
+      "dist/src/freeWalk.js",
+      "assets/**/*",
+      "package.json",
+      "!assets/hamster_ball/hamster_ball_atlas.png"
+    ],
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "identity": null
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Hamster-${version}-win-${arch}-setup.${ext}"
+    },
+    "artifactName": "Hamster-${version}-${os}-${arch}.${ext}",
+    "portable": {
+      "artifactName": "Hamster-${version}-win-${arch}-portable.${ext}"
+    }
+  }
+}
