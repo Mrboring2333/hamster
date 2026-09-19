@@ -1,5 +1,5 @@
 # 小仓鼠桌面宠物
-
+下载链接： https://drive.google.com/file/d/1ObnyuI9N0BWJDiE2rn-wXmFOdwbx_x2m/view?usp=sharing
 Electron + TypeScript + 原生 HTML/CSS，Mac / Windows 共用一份代码。不使用 React、联网字体或服务器。普通素材从桌面「仓鼠计划/previews」原样复制；仓鼠球按指定固定网格切帧。
 
 ## 安装与启动
